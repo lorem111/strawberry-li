@@ -78,7 +78,7 @@ const VoiceAssistHero: React.FC = () => {
 
         {/* CTA Group */}
         <div className="flex flex-col sm:flex-row flex-wrap gap-4 w-full sm:w-auto pt-4 justify-center">
-          <a href="/strawberry-voice-0.10.apk" download className="group relative px-8 py-4 bg-[var(--foreground)] text-[var(--background)] rounded-full font-semibold text-sm transition-all hover:scale-105 hover:shadow-[0_0_40px_-10px_var(--primary)] flex items-center justify-center gap-2">
+          <a href="/strawberry-voice-0.11.apk" download className="group relative px-8 py-4 bg-[var(--foreground)] text-[var(--background)] rounded-full font-semibold text-sm transition-all hover:scale-105 hover:shadow-[0_0_40px_-10px_var(--primary)] flex items-center justify-center gap-2">
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993.0001.5511-.4482.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0225 3.503c-1.766-.8077-3.7296-1.2585-5.8016-1.2585-2.072 0-4.0356.4508-5.8017 1.2585l-2.0224-3.503a.417.417 0 00-.5677-.1521.416.416 0 00-.1521.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h22.665c-.3432-4.1021-2.6889-7.5743-4.7835-9.4396" />
             </svg>
