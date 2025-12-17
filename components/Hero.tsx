@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import Image from 'next/image';
 
 const VoiceAssistHero: React.FC = () => {
   return (
@@ -19,13 +19,39 @@ const VoiceAssistHero: React.FC = () => {
       <div className="absolute bottom-[-20%] left-1/2 -translate-x-1/2 w-[600px] h-[500px] bg-[var(--accent)] opacity-10 blur-[100px] rounded-full pointer-events-none" />
 
       {/* Grid Pattern Overlay */}
-      <div 
+      <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
         style={{
           backgroundImage: `linear-gradient(to right, var(--muted) 1px, transparent 1px), linear-gradient(to bottom, var(--muted) 1px, transparent 1px)`,
           backgroundSize: '4rem 4rem'
         }}
       />
+
+      {/* Phone Mockup */}
+      <div
+        className="absolute right-[-5%] lg:right-[5%] top-1/2 -translate-y-1/2 w-[280px] md:w-[320px] lg:w-[380px] opacity-20 lg:opacity-40 pointer-events-none hidden sm:block"
+        style={{
+          perspective: '1000px',
+        }}
+      >
+        <div
+          style={{
+            transform: 'rotateY(-15deg) rotateX(5deg) rotateZ(2deg)',
+            transformStyle: 'preserve-3d',
+          }}
+        >
+          <div className="relative rounded-[2.5rem] overflow-hidden border-[8px] border-gray-800 bg-gray-900 shadow-2xl shadow-black/50">
+            <Image
+              src="/demo-screen.png"
+              alt="Strawberry App Demo"
+              width={380}
+              height={820}
+              className="w-full h-auto"
+              priority
+            />
+          </div>
+        </div>
+      </div>
 
       <div className="relative z-10 container mx-auto px-6 max-w-5xl flex flex-col items-center text-center space-y-8">
         
