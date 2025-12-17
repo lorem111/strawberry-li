@@ -56,10 +56,10 @@ const VoiceAssistHero: React.FC = () => {
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--muted)]/30 bg-[var(--muted)]/10 backdrop-blur-md">
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent)] opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent)]"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--primary)] opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--primary)]"></span>
           </span>
-          <span className="text-xs font-medium tracking-wide text-[var(--foreground)] opacity-80 uppercase">v1.0 Now Available</span>
+          <span className="text-xs font-medium tracking-wide text-[var(--foreground)] opacity-80 uppercase">v0.11 Now Available</span>
         </div>
 
         {/* Headline */}
