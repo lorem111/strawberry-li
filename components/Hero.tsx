@@ -29,7 +29,7 @@ const VoiceAssistHero: React.FC = () => {
 
       {/* Phone Mockup */}
       <div
-        className="absolute right-[-10%] lg:right-[2%] top-1/2 -translate-y-1/2 w-[350px] md:w-[420px] lg:w-[500px] opacity-15 lg:opacity-25 pointer-events-none hidden sm:block"
+        className="absolute right-[-10%] lg:right-[2%] top-1/2 -translate-y-1/2 w-[350px] md:w-[420px] lg:w-[500px] opacity-60 lg:opacity-80 pointer-events-none hidden sm:block"
         style={{
           perspective: '1000px',
         }}
