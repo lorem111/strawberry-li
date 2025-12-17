@@ -1,0 +1,317 @@
+# 1-Shot Startup Build v2
+
+  You are the Architect. Build a complete, production-ready web application from scratch.
+
+  ## PROJECT BRIEF
+  **Name:** 
+  **Description:** open-source voice assistant with tool use, using latest flagship Gemini 3 apis
+  **Product Type:** Website for an AI voice assistant on Android
+  **Monetization:** free
+  **Price:** free
+
+  ---
+
+  ## ENV REQUIRED
+  - `OPENROUTER_API_KEY` - Gemini design bridge
+  - `STRIPE_SECRET_KEY` - payments (if monetized)
+  - `STRIPE_WEBHOOK_SECRET` - webhook verification (if monetized)
+  - `RESEND_API_KEY` - transactional emails
+
+  ---
+
+  ## PHASE 0: FOUNDATION
+
+  1. Create `.gitignore`:
+     .env*
+     node_modules
+     .next
+     *.db
+     dist
+     .vercel
+
+  2. Create `scripts/preflight.ts`:
+  - Check all required env vars
+  - Print status table: VAR | STATUS (✓ Set / ✗ Missing / ⚠ Using mock)
+  - Export `hasMocks` boolean
+
+  3. Create `scripts/gemini_bridge.py` if not already present:
+  - OpenRouter API with `google/gemini-3-pro-preview` (text)
+  - OpenRouter API with `google/gemini-3-pro-image-preview` (images)
+  - Args: `prompt`, `-t [text|code|json|svg|image]`, `-o [output_file]`
+  - System prompt: "You are a startup CDO/CMO. Output minimal, high-end assets. Return only the requested format—no markdown fences, no commentary."
+  - Image output: save base64 to file
+  - On failure: exit with error (no silent mocks for design assets)
+
+  4. Test bridge: `python3 scripts/gemini_bridge.py "Say OK" -t text`
+
+  ---
+
+  ## PHASE 1: IDENTITY
+
+  1. Init Next.js 15 (TypeScript, Tailwind, App Router, `src/` disabled)
+
+  2. Call Gemini → "Color palette + font pairing for [PROJECT_DESCRIPTION]. Return JSON: { colors: { primary, secondary, accent, background, foreground, muted }, fonts: { sans, serif } }"
+  - Apply to `tailwind.config.ts` with CSS variables
+  - Configure `next/font/google` in layout (no @import)
+
+  3. Call Gemini → "Minimal SVG logo for [PROJECT_NAME]. Single color, geometric, modern. 100x100 viewBox."
+  - Save to `public/logo.svg`
+
+  4. Call Gemini → "Favicon SVG for [PROJECT_NAME]. Must work at 32x32. Simple, recognizable."
+  - Save to `public/favicon.svg`
+  - Add to layout metadata
+
+  ---
+
+  ## PHASE 2: DATABASE
+
+  Use SQLite with `better-sqlite3`:
+
+  1. Create `lib/db.ts`:
+  - Singleton connection
+  - Auto-init tables on first access
+  - Export typed query helpers
+
+  2. Schema:
+  ```sql
+  users (
+    id INTEGER PRIMARY KEY,
+    email TEXT UNIQUE NOT NULL,
+    name TEXT,
+    password_hash TEXT,
+    email_verified_at DATETIME,
+    stripe_customer_id TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  )
+
+  purchases (
+    id INTEGER PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id),
+    product_key TEXT NOT NULL,
+    stripe_payment_id TEXT,
+    amount_cents INTEGER,
+    status TEXT DEFAULT 'pending',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  )
+
+  leads (
+    id INTEGER PRIMARY KEY,
+    email TEXT NOT NULL,
+    source TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  )
+
+  3. Create scripts/init-db.ts - initialize and print row counts
+
+  ---
+  PHASE 3: AUTH (if monetization != free)
+
+  1. Install bcryptjs and jose (JWT)
+  2. Create lib/auth.ts:
+    - hashPassword(password) / verifyPassword(password, hash)
+    - createToken(userId) / verifyToken(token)
+    - Token stored in httpOnly cookie
+  3. Create routes:
+    - app/api/auth/signup/route.ts - create user, hash password, set cookie
+    - app/api/auth/login/route.ts - verify password, set cookie
+    - app/api/auth/logout/route.ts - clear cookie
+    - app/api/auth/me/route.ts - return current user from token
+  4. Create lib/require-auth.ts - middleware helper for protected routes
+  5. Create minimal UI:
+    - app/login/page.tsx
+    - app/signup/page.tsx
+    - Style matches brand, mobile-first
+
+  ---
+  PHASE 4: CORE UI
+
+  1. Call Gemini for each component → save to components/:
+
+  | Component    | Prompt                                                                                                                      |
+  |--------------|-----------------------------------------------------------------------------------------------------------------------------|
+  | Hero.tsx     | "Hero section for [PROJECT]. Headline, subheadline, primary CTA, secondary CTA. [PRODUCT_CONTEXT]. Tailwind, mobile-first." |
+  | Features.tsx | "Features grid for [PROJECT]. 6 features with icons, titles, descriptions. Tailwind."                                       |
+  | Pricing.tsx  | "Pricing section for [PROJECT]. [PRICE_MODEL]. Tailwind." (skip if free)                                                    |
+  | CTA.tsx      | "Bottom CTA banner for [PROJECT]. Urgency, single action. Tailwind."                                                        |
+  | Navbar.tsx   | "Minimal navbar. Logo left, nav links center, CTA right. Mobile hamburger. Tailwind."                                       |
+  | Footer.tsx   | "Footer with links, newsletter signup, copyright. Tailwind."                                                                |
+
+  2. Create app/page.tsx - compose: Navbar → Hero → Features → Pricing → CTA → Footer
+  3. Create app/success/page.tsx - post-purchase/signup confirmation
+  4. Review each Gemini component:
+    - Fix any TypeScript errors
+    - Ensure consistent color tokens (use theme, not hardcoded)
+    - Verify mobile responsiveness
+
+  ---
+  PHASE 5: PAYMENTS (if monetization != free)
+
+  1. Create lib/stripe.ts:
+    - Initialize Stripe with version
+    - Export stripe instance (null if no key, enables mock mode)
+  2. Create app/api/checkout/route.ts:
+    - If mock mode: log and redirect to /success?mock=true
+    - Create Stripe Checkout session
+    - Include metadata: { userId } for webhook
+  3. Create app/api/webhook/route.ts:
+    - Verify Stripe signature
+    - Handle checkout.session.completed: update purchase status, send confirmation email
+    - Handle customer.subscription.* events (if subscription)
+  4. Wire up Pricing component to POST /api/checkout
+
+  ---
+  PHASE 6: EMAIL
+
+  1. Create lib/email.ts:
+    - Initialize Resend (mock if no key)
+    - Export sendEmail({ to, subject, html })
+  2. Create email templates in lib/emails/:
+    - welcome.ts - post-signup
+    - purchase-confirmation.ts - post-purchase with download/access link
+    - lead-magnet.ts - newsletter signup freebie (if applicable)
+  3. Integrate:
+    - Send welcome email on signup
+    - Send confirmation on purchase
+    - Send lead magnet on newsletter signup
+
+  ---
+  PHASE 7: DIGITAL PRODUCT (if applicable)
+
+  If delivering downloadable content (PDF, APK, etc.):
+
+  1. Create scripts/generate-product.ts:
+    - For PDF: Use @react-pdf/renderer
+        - Call Gemini for chapter content
+      - Call Gemini (image mode) for illustrations
+      - Render to public/product/[name].pdf
+    - For APK landing: ensure download links, badges, screenshots
+  2. Create app/api/download/route.ts:
+    - Verify user has purchased (check token + purchases table)
+    - Return signed URL or stream file
+    - Log download
+  3. Create app/download/page.tsx:
+    - Protected page showing download button
+    - Requires auth
+
+  ---
+  PHASE 8: SEO & CONTENT
+
+  1. Create scripts/generate-content.ts:
+    - Call Gemini for 5 SEO keywords related to [PROJECT]
+    - For each keyword: generate 500-word blog post
+    - Save to content/posts/[slug].md with frontmatter
+  2. Create blog routes:
+    - app/blog/page.tsx - list all posts
+    - app/blog/[slug]/page.tsx - render post with CTA banner
+  3. Create app/sitemap.ts - dynamic sitemap
+  4. Create app/robots.ts - robots.txt
+  5. Add metadata to all pages:
+    - title, description
+    - OpenGraph image → app/api/og/route.tsx (use @vercel/og)
+
+  ---
+  PHASE 9: DEPLOYMENT PREP
+
+  1. Create vercel.json:
+  {
+    "framework": "nextjs",
+    "regions": ["iad1"],
+    "crons": []
+  }
+  2. Create .env.example with all required vars (no values)
+  3. Run npm run build:
+    - Fix ALL TypeScript errors
+    - Fix ALL ESLint errors
+    - Ensure no any types in core logic
+  4. Test critical paths manually:
+    - Landing page loads
+    - Signup/login flow (if auth)
+    - Checkout redirects to Stripe (or mock)
+    - Webhook updates database (test with Stripe CLI)
+    - Download works for authenticated users
+    - Blog posts render
+    - Mobile responsive (check at 375px width)
+
+  ---
+  PHASE 10: DOCUMENTATION
+
+  Create README.md:
+  # [PROJECT_NAME]
+
+  [ONE_LINE_DESCRIPTION]
+
+  ## Quick Start
+
+  \`\`\`bash
+  npm install
+  cp .env.example .env.local  # fill in values
+  npm run init-db
+  npm run dev
+  \`\`\`
+
+  ## Environment Variables
+
+  | Variable | Required | Description |
+  |----------|----------|-------------|
+  | OPENROUTER_API_KEY | Yes | Gemini API via OpenRouter |
+  | STRIPE_SECRET_KEY | For payments | Stripe secret key |
+  | STRIPE_WEBHOOK_SECRET | For payments | Stripe webhook signing |
+  | RESEND_API_KEY | For emails | Resend API key |
+
+  ## Scripts
+
+  - `npm run dev` - development server
+  - `npm run build` - production build
+  - `npm run init-db` - initialize database
+  - `npm run generate-content` - generate blog posts
+  - `npm run generate-product` - generate downloadable product
+
+  ## Deployment
+
+  1. Push to GitHub
+  2. Connect to Vercel
+  3. Add environment variables
+  4. Deploy
+
+  ### Stripe Webhook
+
+  Set webhook URL to: `https://[domain]/api/webhook`
+
+  Events: `checkout.session.completed`, `customer.subscription.*`
+  \`\`\`
+
+  ---
+  RULES
+
+  Execution
+
+  - Don't ask permission. Write files.
+  - Don't stop. Complete all phases sequentially.
+  - On Gemini failure: Retry once → hard fail (no silent mocks for design)
+  - On build error: Fix immediately before proceeding
+
+  Code Quality
+
+  - TypeScript strict mode, no any
+  - All components mobile-first (start with sm:, expand up)
+  - Use theme tokens, never hardcoded colors
+  - No placeholder comments or dead code
+  - No console.log in production code (use proper error handling)
+
+  Role Separation
+
+  - Gemini: All creative decisions (copy, colors, layout, images)
+  - Claude: All logic (APIs, auth, database, business rules)
+
+  Security
+
+  - Hash passwords with bcrypt (cost 12)
+  - JWT in httpOnly cookies only
+  - Validate Stripe webhooks
+  - Sanitize all user input
+  - No secrets in client code
+
+  ---
+  START
+
+  Begin Phase 0 now. Execute all phases sequentially. Do not stop until Phase 10 is complete and npm run build succeeds.
