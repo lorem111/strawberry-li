@@ -65,7 +65,7 @@ const VoiceAssistHero: React.FC = () => {
         {/* Headline */}
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-[var(--foreground)] leading-[1.1]">
           Intelligent Voice, <br className="hidden md:block" />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[var(--accent)]">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6B6B] via-[#DC2626] to-[#991B1B]">
             Powered by Gemini
           </span>
         </h1>
