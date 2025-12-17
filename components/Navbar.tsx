@@ -10,6 +10,7 @@ export default function Navbar() {
 
   const navLinks = [
     { name: 'Features', href: '#features' },
+    { name: 'Discord', href: 'https://discord.gg/EfDjdZCF' },
     { name: 'GitHub', href: 'https://github.com/lorem111/strawberry-voice' },
   ];
 
