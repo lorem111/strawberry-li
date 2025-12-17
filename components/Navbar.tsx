@@ -10,7 +10,6 @@ export default function Navbar() {
 
   const navLinks = [
     { name: 'Features', href: '#features' },
-    { name: 'Download', href: '/download' },
     { name: 'GitHub', href: 'https://github.com/lorem111/strawberry-voice' },
   ];
 
@@ -49,12 +48,13 @@ export default function Navbar() {
 
         {/* Desktop CTA */}
         <div className="hidden md:flex md:items-center md:gap-4">
-          <Link
-            href="/download"
+          <a
+            href="/strawberry-voice-0.10.apk"
+            download
             className="rounded-full bg-[var(--primary)] px-5 py-2 text-sm font-semibold text-[var(--background)] shadow-sm transition-transform hover:scale-105 hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--primary)]"
           >
             Download APK
-          </Link>
+          </a>
         </div>
 
         {/* Mobile Toggle */}
@@ -89,13 +89,14 @@ export default function Navbar() {
               </Link>
             ))}
             <div className="mt-4 pt-4 border-t border-[var(--foreground)]/10">
-              <Link
-                href="/download"
+              <a
+                href="/strawberry-voice-0.10.apk"
+                download
                 className="block w-full rounded-lg bg-[var(--primary)] px-3.5 py-2.5 text-center text-sm font-semibold text-[var(--background)] shadow-sm hover:brightness-110"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Download APK
-              </Link>
+              </a>
             </div>
           </div>
         </div>
