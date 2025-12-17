@@ -29,7 +29,7 @@ const VoiceAssistHero: React.FC = () => {
 
       {/* Phone Mockup */}
       <div
-        className="absolute right-[-5%] lg:right-[5%] top-1/2 -translate-y-1/2 w-[280px] md:w-[320px] lg:w-[380px] opacity-20 lg:opacity-40 pointer-events-none hidden sm:block"
+        className="absolute right-[-5%] lg:right-[5%] top-1/2 -translate-y-1/2 w-[280px] md:w-[320px] lg:w-[380px] opacity-15 lg:opacity-25 pointer-events-none hidden sm:block"
         style={{
           perspective: '1000px',
         }}
@@ -40,16 +40,14 @@ const VoiceAssistHero: React.FC = () => {
             transformStyle: 'preserve-3d',
           }}
         >
-          <div className="relative rounded-[2.5rem] overflow-hidden border-[8px] border-gray-800 bg-gray-900 shadow-2xl shadow-black/50">
-            <Image
-              src="/demo-screen.png"
-              alt="Strawberry App Demo"
-              width={380}
-              height={820}
-              className="w-full h-auto"
-              priority
-            />
-          </div>
+          <Image
+            src="/demo-screen.png"
+            alt="Strawberry App Demo"
+            width={380}
+            height={820}
+            className="w-full h-auto drop-shadow-2xl"
+            priority
+          />
         </div>
       </div>
 
