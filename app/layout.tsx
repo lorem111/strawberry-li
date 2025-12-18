@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import Script from "next/script";
+import CursorGlow from "@/components/CursorGlow";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -69,6 +70,7 @@ export default function RootLayout({
         </Script>
       </head>
       <body className={`${manrope.variable} antialiased`}>
+        <CursorGlow />
         {children}
       </body>
     </html>
