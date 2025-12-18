@@ -18,7 +18,7 @@ export default function DownloadPage() {
       <main className="max-w-4xl mx-auto px-6 py-16">
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--muted)]/30 bg-[var(--muted)]/10 mb-6">
-            <span className="text-xs font-medium text-[var(--muted)]">v0.11b • Android 8.0+</span>
+            <span className="text-xs font-medium text-[var(--muted)]">v0.11c • Android 8.0+</span>
           </div>
 
           <h1 className="text-4xl md:text-5xl font-bold text-[var(--foreground)] mb-6">
@@ -31,7 +31,7 @@ export default function DownloadPage() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="/strawberry-voice-0.11b.apk"
+              href="/strawberry-voice-0.11c.apk"
               download
               className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[var(--foreground)] text-[var(--background)] rounded-full font-semibold hover:scale-105 transition-transform"
             >

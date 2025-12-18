@@ -53,7 +53,7 @@ const Footer: React.FC = () => {
             <h4 className="text-xs font-semibold uppercase tracking-widest text-[var(--muted)] mb-6">Platform</h4>
             <nav className="flex flex-col gap-4">
               <a href="#features" className="text-sm font-medium hover:text-[var(--primary)] transition-colors duration-200 w-fit">Features</a>
-              <a href="/strawberry-voice-0.11b.apk" download className="text-sm font-medium hover:text-[var(--primary)] transition-colors duration-200 w-fit">Download</a>
+              <a href="/strawberry-voice-0.11c.apk" download className="text-sm font-medium hover:text-[var(--primary)] transition-colors duration-200 w-fit">Download</a>
               <a href="https://discord.gg/EfDjdZCF" target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:text-[var(--primary)] transition-colors duration-200 w-fit">Discord</a>
               <a href="https://github.com/lorem111/strawberry-voice" target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:text-[var(--primary)] transition-colors duration-200 w-fit">GitHub</a>
               <a href="/blog" className="text-sm font-medium hover:text-[var(--primary)] transition-colors duration-200 w-fit">Blog</a>
