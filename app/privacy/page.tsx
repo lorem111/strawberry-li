@@ -30,10 +30,25 @@ export default function PrivacyPolicy() {
 
           <section>
             <h2 className="text-2xl font-semibold text-[var(--foreground)] mb-4">Information We Collect</h2>
+
+            <h3 className="text-lg font-medium text-[var(--foreground)] mt-6 mb-2">Account Information</h3>
+            <p className="text-[var(--muted)] leading-relaxed">
+              When you sign in with Google, we receive and store your basic profile information including:
+            </p>
+            <ul className="list-disc list-inside text-[var(--muted)] space-y-2 mt-2">
+              <li>Email address</li>
+              <li>Display name</li>
+              <li>Profile picture</li>
+            </ul>
+            <p className="text-[var(--muted)] leading-relaxed mt-2">
+              This information is used to identify your account and provide personalized service.
+            </p>
+
             <h3 className="text-lg font-medium text-[var(--foreground)] mt-6 mb-2">Voice Data</h3>
             <p className="text-[var(--muted)] leading-relaxed">
               Strawberry uses your device&apos;s microphone to capture voice input when you interact with the assistant.
               This voice data is processed to convert your speech to text and respond to your requests.
+              We do not store or retain the content of your conversations.
             </p>
 
             <h3 className="text-lg font-medium text-[var(--foreground)] mt-6 mb-2">API Key</h3>
@@ -88,7 +103,7 @@ export default function PrivacyPolicy() {
               <li>General usage patterns (non-personally identifiable)</li>
             </ul>
             <p className="text-[var(--muted)] leading-relaxed mt-4">
-              This data does not include the content of your conversations or any personally identifiable information.
+              This data does not include the content of your conversations.
             </p>
           </section>
 
