@@ -111,10 +111,10 @@ const VoiceAssistHero: React.FC = () => {
         </div>
 
         {/* Tech Stack Chips */}
-        <div className="pt-12 flex flex-wrap justify-center gap-6 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-          <span className="text-xs font-mono text-[var(--muted)] tracking-widest uppercase border-b border-transparent hover:border-[var(--primary)] hover:text-[var(--primary)] cursor-default transition-colors">Google Gemini API</span>
-          <span className="text-xs font-mono text-[var(--muted)] tracking-widest uppercase border-b border-transparent hover:border-[var(--primary)] hover:text-[var(--primary)] cursor-default transition-colors">Android Native</span>
-          <span className="text-xs font-mono text-[var(--muted)] tracking-widest uppercase border-b border-transparent hover:border-[var(--primary)] hover:text-[var(--primary)] cursor-default transition-colors">Tool Calling</span>
+        <div className="pt-12 flex flex-wrap justify-center gap-6">
+          <span className="text-xs font-mono text-[var(--muted)] tracking-widest uppercase">Google Gemini API</span>
+          <span className="text-xs font-mono text-[var(--muted)] tracking-widest uppercase">Android Native</span>
+          <span className="text-xs font-mono text-[var(--muted)] tracking-widest uppercase">Tool Calling</span>
         </div>
       </div>
     </div>
