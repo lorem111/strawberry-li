@@ -71,7 +71,7 @@ const features: FeatureProps[] = [
 
 export const FeaturesSection: React.FC = () => {
   return (
-    <section className="py-24 px-6 bg-black text-[var(--foreground)]">
+    <section id="features" className="py-24 px-6 bg-black text-[var(--foreground)]">
       <div className="max-w-7xl mx-auto">
         <div className="mb-16 md:mb-24 max-w-2xl">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-6 text-[var(--foreground)]">
