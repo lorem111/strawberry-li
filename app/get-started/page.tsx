@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Download Strawberry - Free Android Voice Assistant",
-  description: "Download Strawberry, the open-source AI voice assistant for Android. Powered by Gemini APIs with tool use capabilities.",
+  title: "Get Started - Strawberry Voice Assistant",
+  description: "Download and install Strawberry, the open-source AI voice assistant for Android. Powered by Gemini APIs with tool use capabilities.",
 };
 
 export default function DownloadPage() {
@@ -31,7 +31,7 @@ export default function DownloadPage() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="/api/download"
+              href="/download"
               download
               className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[var(--foreground)] text-[var(--background)] rounded-full font-semibold hover:scale-105 transition-transform"
             >

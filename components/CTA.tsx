@@ -14,7 +14,7 @@ const VoiceAssistCTA: React.FC = () => {
           </p>
         </div>
         <a
-          href="/api/download"
+          href="/download"
           download
           className="group flex shrink-0 items-center gap-3 rounded-full bg-white px-8 py-3.5 text-sm font-bold uppercase tracking-wide text-black transition-all hover:bg-white/90 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black active:scale-95"
           aria-label="Download Strawberry APK"
