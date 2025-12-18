@@ -27,16 +27,16 @@ export default function CursorGlow() {
 
   return (
     <div
-      className="pointer-events-none fixed inset-0 z-0 transition-opacity duration-300"
+      className="pointer-events-none fixed inset-0 z-50 transition-opacity duration-300 overflow-hidden"
       style={{ opacity: isVisible ? 1 : 0 }}
     >
       <div
-        className="absolute w-[600px] h-[600px] rounded-full"
+        className="absolute w-[800px] h-[800px] rounded-full"
         style={{
-          left: position.x - 300,
-          top: position.y - 300,
-          background: "radial-gradient(circle, rgba(220, 38, 38, 0.15) 0%, rgba(220, 38, 38, 0) 70%)",
-          transition: "left 0.1s ease-out, top 0.1s ease-out",
+          left: position.x - 400,
+          top: position.y - 400,
+          background: "radial-gradient(circle, rgba(220, 38, 38, 0.25) 0%, rgba(220, 38, 38, 0) 60%)",
+          transition: "left 0.05s ease-out, top 0.05s ease-out",
         }}
       />
     </div>
