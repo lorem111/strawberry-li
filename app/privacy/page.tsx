@@ -71,9 +71,24 @@ export default function PrivacyPolicy() {
           <section>
             <h2 className="text-2xl font-semibold text-[var(--foreground)] mb-4">Data Storage</h2>
             <p className="text-[var(--muted)] leading-relaxed">
-              All app settings and your API key are stored locally on your device. We do not operate servers
-              that collect or store your personal information. Conversation history may be stored locally on
-              your device for your convenience and can be deleted at any time through the app.
+              All app settings and your API key are stored locally on your device. Conversation history may
+              be stored locally on your device for your convenience and can be deleted at any time through the app.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-semibold text-[var(--foreground)] mb-4">Usage Logging</h2>
+            <p className="text-[var(--muted)] leading-relaxed">
+              We collect limited, anonymized logging information to prevent abuse and monitor app stability.
+              This may include:
+            </p>
+            <ul className="list-disc list-inside text-[var(--muted)] space-y-2 mt-4">
+              <li>API usage metrics (e.g., token/credit consumption)</li>
+              <li>Error reports and crash data</li>
+              <li>General usage patterns (non-personally identifiable)</li>
+            </ul>
+            <p className="text-[var(--muted)] leading-relaxed mt-4">
+              This data does not include the content of your conversations or any personally identifiable information.
             </p>
           </section>
 
