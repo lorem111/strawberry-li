@@ -27,7 +27,7 @@ export default function CursorGlow() {
 
   return (
     <div
-      className="pointer-events-none fixed inset-0 z-50 transition-opacity duration-300 overflow-hidden"
+      className="pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300 overflow-hidden"
       style={{ opacity: isVisible ? 1 : 0 }}
     >
       <div
