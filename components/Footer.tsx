@@ -43,9 +43,9 @@ const Footer: React.FC = () => {
             <p className="text-[var(--muted)] text-sm leading-relaxed max-w-xs">
               Architecting the next generation of open-source voice interfaces. Minimal latency, maximum privacy.
             </p>
-            <div className="inline-flex items-center px-2.5 py-1 rounded border border-[var(--muted)]/20 bg-[var(--muted)]/5 w-fit">
+            <a href="https://github.com/lorem111/strawberry-voice/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-2.5 py-1 rounded border border-[var(--muted)]/20 bg-[var(--muted)]/5 w-fit hover:border-[var(--primary)]/40 transition-colors">
               <span className="text-[10px] font-medium tracking-wider uppercase text-[var(--muted)]">MIT License</span>
-            </div>
+            </a>
           </div>
 
           {/* Navigation */}
