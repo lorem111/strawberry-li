@@ -151,7 +151,7 @@ export default function PrivacyPolicy() {
             <h2 className="text-2xl font-semibold text-[var(--foreground)] mb-4">Contact Us</h2>
             <p className="text-[var(--muted)] leading-relaxed">
               If you have any questions about this Privacy Policy, please reach out via our{" "}
-              <a href="https://discord.gg/EfDjdZCF" target="_blank" rel="noopener noreferrer" className="text-[var(--primary)] hover:underline">
+              <a href="https://discord.gg/WFVZnBMzdc" target="_blank" rel="noopener noreferrer" className="text-[var(--primary)] hover:underline">
                 Discord server
               </a>{" "}
               or open an issue on{" "}

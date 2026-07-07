@@ -1,7 +1,37 @@
-.env*
+# Dependencies
 node_modules
-.next
-*.db
+
+# Next.js build output
+.next/
+out/
 dist
+
+# Vercel
 .vercel
+
+# Environment / secrets
+.env*
+!.env.example
+
+# Databases
+*.db
+
+# Python
 __pycache__/
+*.pyc
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+
+# App binaries don't belong in the repo (served from Google Play)
+*.apk
+*.aab
+
+# TypeScript incremental build info
+*.tsbuildinfo

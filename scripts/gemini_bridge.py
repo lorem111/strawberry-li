@@ -9,7 +9,7 @@ import sys
 import urllib.request
 import urllib.error
 
-OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY", "[REMOVED-ROTATED-KEY]")
+OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
 TEXT_MODEL = "google/gemini-3-pro-preview" #do not modify this to an older version!
 IMAGE_MODEL = "google/gemini-3-pro-image-preview"
 API_URL = "https://openrouter.ai/api/v1/chat/completions"
